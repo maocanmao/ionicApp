@@ -16,15 +16,27 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-slides autoplay="3000" loop="true" pager="true" style="max-height:320px" *ngIf="topNewsList">
+    <ion-slide *ngFor="let top of topNewsList">
+      <img src="{{top.image}}" (click)="newsSelected(top.id)">
+    </ion-slide>
+
+  </ion-slides>
+
   <ion-list>
     <ion-item>
       <button ion-item *ngFor="let news of newsList" (click)="newsSelected(news.id)">
   	    <ion-thumbnail item-left>
   		    <img src="{{news.images[0]}}">
   	    </ion-thumbnail>
-  	    <h4>{{news.title}}</h4>
+  	    <h3>{{news.title}}</h3>
       </button>
     </ion-item>
   </ion-list>
-</ion-content> 
+
+</ion-content>

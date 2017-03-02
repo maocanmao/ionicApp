@@ -19,7 +19,7 @@ export class NewsData {
   }
 
   load(){
-  	 return this.http.get(this.newsApiUrl + '/latest').map(res => res.json());
+  	 return this.http.get(this.newsApiUrl + '/latest').timeout(10000).map(res => res.json());
   }
 
   loadNewsDetail(id:string){
