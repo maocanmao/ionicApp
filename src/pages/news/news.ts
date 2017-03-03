@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { NewsData } from '../../providers/news-data';
 import { LoadingController } from 'ionic-angular'
 import { NewsDetailPage } from '../news-detail/news-detail'
@@ -28,8 +28,6 @@ export class NewsPage {
     this.loading = this.loadingController.create({
       content: "Loading..."
     });
-
-
   }
 
   ngOnInit() {
@@ -50,20 +48,21 @@ export class NewsPage {
     });
   }
 
-  doRefresh(refresher){
+  doRefresh(refresher) {
     this.newsData.load().subscribe(response => {
       this.newsList = response.stories;
       this.topNewsList = response.top_stories;
       console.log(response);
-       refresher.complete();
+      refresher.complete();
       this.loading.dismiss();
     }, (errorResponse: any) => {
       this.showToast("Network is unavailable.")
       this.loading.dismiss();
-       refresher.complete();
+      refresher.complete();
     });
 
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsPage');

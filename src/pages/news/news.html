@@ -28,14 +28,16 @@
 
   </ion-slides>
 
-  <ion-list>
-    <ion-item>
-      <button ion-item *ngFor="let news of newsList" (click)="newsSelected(news.id)">
+  <ion-list >
+    <ion-item *ngFor="let news of newsList">
+      <button ion-item (click)="newsSelected(news.id)">
   	    <ion-thumbnail item-left>
-  		    <img src="{{news.images[0]}}">
+  		    <ion-img src="{{news.images[0]}}"></ion-img>
   	    </ion-thumbnail>
   	    <h3>{{news.title}}</h3>
+       
       </button>
+      
     </ion-item>
   </ion-list>
 

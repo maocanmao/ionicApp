@@ -10,7 +10,7 @@ import 'rxjs/RX';
 */
 @Injectable()
 export class NewsData {
-	newsApiUrl = 'http://news-at.zhihu.com/api/4/news';
+	newsApiUrl = 'http://news-at.zhihu.com/api/4';
 
   
 
@@ -19,11 +19,19 @@ export class NewsData {
   }
 
   load(){
-  	 return this.http.get(this.newsApiUrl + '/latest').timeout(10000).map(res => res.json());
+  	 return this.http.get(this.newsApiUrl + '/news/latest').timeout(10000).map(res => res.json());
   }
 
   loadNewsDetail(id:string){
-    return this.http.get(this.newsApiUrl+ '/'+ id).map(res => res.json());
+    return this.http.get(this.newsApiUrl+ '/news/'+ id).map(res => res.json());
+  }
+
+  loadNewsExtra(id:string){
+    return this.http.get(this.newsApiUrl + '/story-extra/' +id).map(res => res.json());
+  }
+
+  loadNewsComments(newsId: string){
+    return this.http.get(this.newsApiUrl + '/story/' + newsId + '/short-comments').map(res => res.json());
   }
 
 }

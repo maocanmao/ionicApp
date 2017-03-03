@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {NewsData} from '../../providers/news-data';
-import {LoadingController} from 'ionic-angular'
+import { NewsData } from '../../providers/news-data';
+import { LoadingController } from 'ionic-angular'
 import { ToastController } from 'ionic-angular'
+import { NewsCommentsPage } from '../news-comments/news-comments'
 
 /*
   Generated class for the news-detail page.
@@ -15,29 +16,45 @@ import { ToastController } from 'ionic-angular'
   templateUrl: 'news-detail.html'
 })
 export class NewsDetailPage {
-  newsDetail : any;
+  newsDetail: any;
   loading: any;
   newsId: string;
+  newsExtra: any;
 
-  constructor(public navCtrl: NavController, public newsData: NewsData, public loadingController: LoadingController, 
-  public params:NavParams, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public newsData: NewsData, public loadingController: LoadingController,
+    public params: NavParams, private toastCtrl: ToastController) {
     this.loading = this.loadingController.create({
-        content: "loading..."
-      });
-      this.newsId = params.get('id');
-      console.log(this.newsId);
+      content: "loading..."
+    });
+    this.newsId = params.get('id');
+    console.log(this.newsId);
 
-  	
+
   }
 
-  ngOnInit(){
-      this.newsData.loadNewsDetail(this.newsId).subscribe(response => {     
+  ngOnInit() {
+    this.newsData.loadNewsDetail(this.newsId).subscribe(response => {
       this.newsDetail = response;
       console.log(this.newsDetail);
-      this.loading.dismiss(); 
-    },(errorResponse: any) => {
+      this.loading.dismiss();
+    }, (errorResponse: any) => {
       this.showToast("Network is unavailable.")
       this.loading.dismiss();
+    });
+
+    this.loadNewsExtraDetail(this.newsId);
+
+  }
+
+  loadNewsExtraDetail(id: string) {
+    this.newsData.loadNewsExtra(id).subscribe(response => {
+      this.newsExtra = response;
+    });
+  }
+
+  commentsClick() {
+    this.navCtrl.push(NewsCommentsPage, {
+      id: this.newsId
     });
 
   }

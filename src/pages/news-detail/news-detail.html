@@ -25,3 +25,13 @@
         </ion-card-content>
     </ion-card>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar *ngIf="newsExtra">
+        <ion-icon name="ios-star-outline"></ion-icon>
+        {{newsExtra.popularity}}&nbsp;&nbsp;
+
+        <ion-icon name="ios-chatboxes-outline" (click)="commentsClick()"></ion-icon>
+        {{newsExtra.comments}}
+    </ion-toolbar>
+</ion-footer>
