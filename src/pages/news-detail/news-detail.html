@@ -13,17 +13,18 @@
 </ion-header>
 
 
-<ion-content>
-    <ion-card>
-        <ion-card-title *ngIf="newsDetail">
-            {{newsDetail.title}}
-        </ion-card-title>
+<ion-content padding="true">
 
-        <ion-card-content *ngIf="newsDetail">
-            <img src="{{newsDetail.image}}">
-            <div innerHTML="{{newsDetail.body}}"></div>
-        </ion-card-content>
-    </ion-card>
+    <h2 *ngIf="newsDetail">
+        {{newsDetail.title}}
+    </h2>
+
+    <div *ngIf="newsDetail">
+        <img src="{{newsDetail.image}}">
+        <p innerHTML="{{newsDetail.body}}">
+        </p>
+    </div>
+
 </ion-content>
 
 <ion-footer>
