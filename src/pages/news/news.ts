@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NewsData } from '../../providers/news-data';
+import { LoginService } from '../../providers/login-service';
+import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular'
 import { NewsDetailPage } from '../news-detail/news-detail'
+import { LoginPage } from '../login/login'
 import { ToastController } from 'ionic-angular'
 import { Slides } from 'ionic-angular'
 import { ViewChild } from '@angular/core';
+import { MenuController } from 'ionic-angular';
 
 /*
   Generated class for the News page.
@@ -24,15 +28,28 @@ export class NewsPage {
 
   @ViewChild(Slides) slides: Slides;
 
-  constructor(public navCtrl: NavController, public newsData: NewsData, public loadingController: LoadingController, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public newsData: NewsData,
+    public loadingController: LoadingController, private toastCtrl: ToastController,
+    private loginService: LoginService, public storage: Storage, public menuController: MenuController) {
     this.loading = this.loadingController.create({
       content: "Loading..."
     });
+    menuController.enable(true);
   }
 
   ngOnInit() {
     console.log("Ng On Init");
-    this.loadNews();
+    this.storage.get("accessToken").then((val) => {
+      console.log("Current accessToken:" + val);
+      console.log("latest accessToken:" + this.loginService.getLatestAccessToken());
+      if (val != this.loginService.getLatestAccessToken()) {
+        this.navCtrl.setRoot(LoginPage);
+      } else {
+        this.loading.present();
+        this.loadNews();
+      }
+    })
+
   }
 
   loadNews() {
@@ -60,13 +77,11 @@ export class NewsPage {
       this.loading.dismiss();
       refresher.complete();
     });
-
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsPage');
-    this.loading.present();
   }
 
   newsSelected(id: string) {
@@ -89,5 +104,8 @@ export class NewsPage {
     toast.present();
   }
 
+  toggleMenu() {
+    this.menuController.toggle();
+  }
 
 }

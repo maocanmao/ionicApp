@@ -4,7 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { NewsPage } from '../pages/news/news';
 import { NewsDetailPage } from '../pages/news-detail/news-detail';
-
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
