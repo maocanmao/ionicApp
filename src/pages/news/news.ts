@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular'
 import { NewsDetailPage } from '../news-detail/news-detail'
 import { LoginPage } from '../login/login'
+import { ChartPage } from '../chart/chart'
 import { ToastController } from 'ionic-angular'
 import { Slides } from 'ionic-angular'
 import { ViewChild } from '@angular/core';
@@ -106,6 +107,17 @@ export class NewsPage {
 
   toggleMenu() {
     this.menuController.toggle();
+  }
+
+  getColor():string{
+    return ' '
+  }
+
+  openChart(){
+    this.navCtrl.setRoot(ChartPage);
+  }
+
+  openNews(){
   }
 
 }
