@@ -6,6 +6,7 @@ import { NewsDetailPage } from '../pages/news-detail/news-detail';
 import { NewsCommentsPage } from '../pages/news-comments/news-comments';
 import { LoginPage } from '../pages/login/login';
 import { ChartPage } from '../pages/chart/chart';
+import { TimelinePage } from '../pages/timeline/timeline';
 
 import { NewsData } from '../providers/news-data';
 import { LoginService } from '../providers/login-service';
@@ -20,6 +21,7 @@ import { Storage } from '@ionic/storage';
     NewsCommentsPage,
     LoginPage,
     ChartPage,
+    TimelinePage,
     NewsDetailPage
   ],
   imports: [
@@ -32,6 +34,7 @@ import { Storage } from '@ionic/storage';
     NewsCommentsPage,
     LoginPage,
     ChartPage,
+    TimelinePage,
     NewsDetailPage
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, NewsData, Storage, LoginService]
