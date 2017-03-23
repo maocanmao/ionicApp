@@ -11,6 +11,7 @@ import { TimelinePage } from '../pages/timeline/timeline';
 import { NewsData } from '../providers/news-data';
 import { LoginService } from '../providers/login-service';
 // import { UserInfo } from '../model/user-info';
+import { DataGaugeComponent } from '../components/data-gauge/data-gauge'
 
 import { Storage } from '@ionic/storage';
 
@@ -22,7 +23,8 @@ import { Storage } from '@ionic/storage';
     LoginPage,
     ChartPage,
     TimelinePage,
-    NewsDetailPage
+    NewsDetailPage,
+    DataGaugeComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,7 +37,8 @@ import { Storage } from '@ionic/storage';
     LoginPage,
     ChartPage,
     TimelinePage,
-    NewsDetailPage
+    NewsDetailPage,
+    DataGaugeComponent
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, NewsData, Storage, LoginService]
 })

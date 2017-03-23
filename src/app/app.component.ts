@@ -27,7 +27,7 @@ export class MyApp {
   appPages: PageInterface[] = [
     { title: 'News', component: NewsPage, icon: 'information-circle' },
     { title: 'Chart', component: ChartPage, index: 1, icon: 'contacts' },
-     { title: 'Timeline', component: TimelinePage, index: 1, icon: 'contacts' },
+    { title: 'Timeline', component: TimelinePage, index: 1, icon: 'contacts' },
   ];
 
   constructor(platform: Platform) {
@@ -39,7 +39,7 @@ export class MyApp {
     });
   }
 
-  openPage(page: PageInterface){
+  openPage(page: PageInterface) {
     this.nav.setRoot(page.component);
   }
 }
